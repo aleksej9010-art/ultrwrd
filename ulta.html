@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rewards Center</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root{
+  --orange:#ff7a1a;
+  --bg:#fff6ef;
+  --card:#ffffff;
+  --border:#f0e2d6;
+  --text:#1f1f1f;
+  --muted:#6d6d6d;
+  --green:#2bb673;
+}
+
+*{
+  box-sizing:border-box;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto;
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+}
+
+.wrapper{
+  max-width:420px;
+  margin:12px auto;
+  padding:0 14px;
+}
+
+.header{
+  text-align:center;
+  margin-bottom:10px;
+}
+
+.header h1{
+  font-size:16px;
+  font-weight:800;
+  font-style:italic;
+  margin:0 0 6px;
+}
+
+/* LOGO WITH RADIUS + SHADOW */
+.logo{
+  width:96px;
+  margin:0 auto;
+  display:block;
+  border-radius:16px;
+  box-shadow:0 6px 14px rgba(0,0,0,.18);
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:10px;
+  box-shadow:0 3px 10px rgba(0,0,0,.04);
+}
+
+.step{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:8px;
+  border-radius:10px;
+  background:#fffaf6;
+  border:1px solid var(--border);
+  margin-bottom:6px;
+}
+
+.step-number{
+  width:24px;
+  height:24px;
+  font-size:13px;
+  border-radius:50%;
+  background:var(--orange);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+}
+
+.step-text{
+  font-size:13px;
+  font-weight:600;
+}
+
+.note{
+  text-align:center;
+  font-size:11px;
+  color:var(--muted);
+  margin:8px 0 10px;
+}
+
+.cta{
+  width:100%;
+  border:none;
+  border-radius:12px;
+  background:var(--orange);
+  color:#fff;
+  font-size:15px;
+  font-weight:700;
+  padding:13px;
+  cursor:pointer;
+}
+
+.counter{
+  margin-top:8px;
+  border:1px solid var(--green);
+  color:var(--green);
+  background:#f1fff7;
+  padding:8px;
+  border-radius:10px;
+  font-size:12px;
+  text-align:center;
+}
+
+/* FAQ */
+.faq{
+  margin-top:10px;
+}
+
+.faq h3{
+  font-size:13px;
+  margin:0 0 6px;
+}
+
+.faq-item{
+  border:1px solid var(--border);
+  border-radius:10px;
+  margin-bottom:6px;
+  overflow:hidden;
+}
+
+.faq-question{
+  padding:8px 10px;
+  font-size:12px;
+  font-weight:600;
+  cursor:pointer;
+  background:#fffaf6;
+}
+
+.faq-answer{
+  display:none;
+  padding:8px 10px;
+  font-size:12px;
+  background:#fff;
+  color:var(--muted);
+}
+
+.footer{
+  margin-top:6px;
+  font-size:10px;
+  color:var(--muted);
+  text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+  <div class="header">
+    <h1>Rewards Center</h1>
+    <img src="download.png" class="logo" alt="Rewards">
+  </div>
+
+  <div class="card">
+    <div class="step">
+      <div class="step-number">1</div>
+      <div class="step-text">Click the button below</div>
+    </div>
+    <div class="step">
+      <div class="step-number">2</div>
+      <div class="step-text">Enter email & basic info</div>
+    </div>
+    <div class="step">
+      <div class="step-number">3</div>
+      <div class="step-text">Complete recommended deals</div>
+    </div>
+    <div class="step">
+      <div class="step-number">4</div>
+      <div class="step-text">Claim your reward</div>
+    </div>
+  </div>
+
+  <div class="note">
+    Completing more deals results in higher rewards
+  </div>
+
+  <button class="cta" onclick="goOffer()">
+    Claim Your Reward →
+  </button>
+
+  <div class="counter">
+    👥 <span id="count">7,304</span> people claimed today
+  </div>
+
+  <div class="faq">
+    <h3>FAQ</h3>
+
+    <div class="faq-item">
+      <div class="faq-question">How do I become eligible?</div>
+      <div class="faq-answer">
+        To be eligible for the rewards you have to complete 4–5 recommended deals.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Why are deals required?</div>
+      <div class="faq-answer">
+        Completing 4–5 deals ensures you are eligible and marks you as safe for rewards.
+        Completing less deals may result in you being flagged as a robot.
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+   
+  </div>
+
+</div>
+
+<script>
+let count = 7304;
+const el = document.getElementById("count");
+
+setInterval(()=>{
+  count += Math.floor(Math.random()*3)+1;
+  el.textContent = count.toLocaleString();
+},3500);
+
+document.querySelectorAll(".faq-question").forEach(q=>{
+  q.addEventListener("click",()=>{
+    const a = q.nextElementSibling;
+    a.style.display = a.style.display === "block" ? "none" : "block";
+  });
+});
+
+function goOffer(){
+  window.location.href = "https://trkio.org/aff_c?offer_id=1180&aff_id=144214";
+}
+</script>
+
+</body>
+</html>
